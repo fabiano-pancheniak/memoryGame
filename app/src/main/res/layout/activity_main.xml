@@ -6,104 +6,54 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <fragment
-        android:id="@+id/themeFragment"
-        android:name="com.example.memorygame.ThemeFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:elevation="5dp"
+        app:cardCornerRadius="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <RadioGroup
+            android:id="@+id/themeGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/themeDefault"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:background="@drawable/alignment_selector"
+                android:button="@drawable/ic_theme_default"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/themeAnimals"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:background="@drawable/alignment_selector"
+                android:button="@drawable/ic_theme_pets" />/>
+
+        </RadioGroup>
+
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/btnPlay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
         android:text="Iniciar!"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/rgMode"
-        app:layout_constraintHorizontal_bias="0.481"
-        app:layout_constraintStart_toStartOf="@+id/rgMode" />
-
-    <RadioGroup
-        android:id="@+id/rgDifficulty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/rgMode"
-        app:layout_constraintEnd_toEndOf="@+id/btnTheme"
-        app:layout_constraintHorizontal_bias="0.545"
-        app:layout_constraintStart_toStartOf="@+id/btnTheme">
-
-        <RadioButton
-            android:id="@+id/rbMainEasy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_marginEnd="5dp"
-            android:checked="true"
-            android:text="Fácil" />
-
-        <RadioButton
-            android:id="@+id/rbMainMedium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_marginEnd="5dp"
-            android:text="Médio" />
-
-        <RadioButton
-            android:id="@+id/rbMainHard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="Difícil" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </androidx.cardview.widget.CardView>
-    </RadioGroup>
-
-    <RadioGroup
-        android:id="@+id/rgMode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/btnPlay"
-        app:layout_constraintEnd_toEndOf="@+id/rgDifficulty"
-        app:layout_constraintHorizontal_bias="0.512"
-        app:layout_constraintStart_toStartOf="@+id/rgDifficulty">
-
-        <RadioButton
-            android:id="@+id/rgSolo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:checked="true"
-            android:text="Solo" />
-
-        <RadioButton
-            android:id="@+id/rgDuo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="1 vs 1" />
-    </RadioGroup>
-
-    <ImageButton
-        android:id="@+id/btnTheme"
-        android:layout_width="240dp"
-        android:layout_height="240dp"
-        app:layout_constraintBottom_toTopOf="@+id/rgDifficulty"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.806"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
