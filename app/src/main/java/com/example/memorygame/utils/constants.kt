@@ -3,6 +3,7 @@ package com.example.memorygame.utils
 import com.example.memorygame.R
 
 const val EXTRA_BOARD_SIZE = "EXTRA_BOARD_SIZE"
+const val EXTRA_BOARD_THEME = "EXTRA_BOARD_THEME"
 val DEFAULT_ICONS = listOf(
     R.drawable.ic_face,
     R.drawable.ic_flower,
@@ -16,5 +17,19 @@ val DEFAULT_ICONS = listOf(
     R.drawable.ic_send,
     R.drawable.ic_star,
     R.drawable.ic_work
+)
 
+val ALPHABHET_ICONS = listOf(
+    R.drawable.ic_card_a,
+    R.drawable.ic_card_b,
+    R.drawable.ic_card_c,
+    R.drawable.ic_card_d,
+    R.drawable.ic_card_e,
+    R.drawable.ic_card_f,
+    R.drawable.ic_card_g,
+    R.drawable.ic_card_h,
+    R.drawable.ic_card_i,
+    R.drawable.ic_card_j,
+    R.drawable.ic_card_k,
+    R.drawable.ic_card_l
 )

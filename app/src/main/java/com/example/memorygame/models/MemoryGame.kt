@@ -1,5 +1,6 @@
 package com.example.memorygame.models
 
+import com.example.memorygame.utils.ALPHABHET_ICONS
 import com.example.memorygame.utils.DEFAULT_ICONS
 
 class MemoryGame(private val boardSize: BoardSize){
@@ -58,7 +59,5 @@ class MemoryGame(private val boardSize: BoardSize){
         return cards[position].isFaceUp
     }
 
-    fun getNumMoves(): Int{
-        return numCardFlips / 2
-    }
+
 }

@@ -15,6 +15,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.memorygame.models.BoardSize
+import com.example.memorygame.models.BoardTheme
 import com.example.memorygame.models.MemoryCard
 import com.example.memorygame.models.MemoryGame
 import com.example.memorygame.utils.DEFAULT_ICONS
@@ -29,14 +30,18 @@ class Game : AppCompatActivity() {
     private lateinit var rvBoard: RecyclerView
     private lateinit var clRoot: ConstraintLayout
     private lateinit var adapter: MemoryBoardAdapter
-    //private lateinit var tvNumMoves: TextView
 
 
-    private var  boardSize: BoardSize = BoardSize.EASY
+
+    private lateinit var boardSize: BoardSize
+    private lateinit var BoardTheme: BoardTheme
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+
+        //Recebendo informacao da intent
+        boardSize = intent.getSerializableExtra(EXTRA_BOARD_SIZE) as BoardSize
 
         clRoot = findViewById(R.id.clRoot)
         rvBoard = findViewById(R.id.rvBoard)
@@ -80,17 +85,7 @@ class Game : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun showCreationDialog() {
-        val boardSizeView = LayoutInflater.from(this).inflate(R.layout.dialog_board_size, null)
-        val radioGroupSize = boardSizeView.findViewById<RadioGroup>(R.id.radioGroup)
-        showAlertDialog("Crie seu jogo", boardSizeView, View.OnClickListener {
-            val desiredBoardSize = when(radioGroupSize.checkedRadioButtonId){
-                R.id.rbEasy -> BoardSize.EASY
-                R.id.rbMedium -> BoardSize.MEDIUM
-                else -> BoardSize.HARD
-            }
-        })
-    }
+
 
     private fun showNewSizeDialog() {
          val boardSizeView = LayoutInflater.from(this).inflate(R.layout.dialog_board_size, null)
@@ -142,7 +137,8 @@ class Game : AppCompatActivity() {
     }
     private fun setupBoard() {
         memoryGame = MemoryGame(boardSize)
-        adapter = MemoryBoardAdapter(this, boardSize, memoryGame.cards, object: MemoryBoardAdapter.CardClickListener{
+
+        adapter = MemoryBoardAdapter(this, boardSize,  memoryGame.cards, object: MemoryBoardAdapter.CardClickListener{
             override fun onCardClicked(position: Int) {
                 updateGameWithFlip(position)
             }

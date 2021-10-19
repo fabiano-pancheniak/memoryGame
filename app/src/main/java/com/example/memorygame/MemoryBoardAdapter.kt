@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.memorygame.models.BoardSize
+import com.example.memorygame.models.BoardTheme
 import com.example.memorygame.models.MemoryCard
 import kotlin.math.min
 
