@@ -40,7 +40,7 @@ enum class BoardTheme(val chosenTheme: List<Int>) {
                 R.drawable.ic_card_giraffe,
                 R.drawable.ic_card_goose,
                 R.drawable.ic_card_krab,
-                R.drawable.ic_card_lion,
+                R.mipmap.ic_card_lion_foreground,
                 R.drawable.ic_card_scorpion,
                 R.drawable.ic_card_snake,
                 R.drawable.ic_card_turtle))
