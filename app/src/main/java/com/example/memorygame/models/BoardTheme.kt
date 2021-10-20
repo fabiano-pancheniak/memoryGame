@@ -32,18 +32,19 @@ enum class BoardTheme(val chosenTheme: List<Int>) {
                 R.drawable.ic_card_k,
                 R.drawable.ic_card_l)),
         ANIMALS(listOf(
-                R.drawable.ic_card_bear,
-                R.drawable.ic_card_camel,
-                R.drawable.ic_card_dog,
-                R.drawable.ic_card_elephant,
-                R.drawable.ic_card_gator,
-                R.drawable.ic_card_giraffe,
-                R.drawable.ic_card_goose,
-                R.drawable.ic_card_krab,
+                R.mipmap.ic_card_bear_foreground,
                 R.mipmap.ic_card_lion_foreground,
-                R.drawable.ic_card_scorpion,
-                R.drawable.ic_card_snake,
-                R.drawable.ic_card_turtle))
+                R.mipmap.ic_card_bear_foreground,
+                R.mipmap.ic_card_butterfly_foreground,
+                R.mipmap.ic_card_cow_foreground,
+                R.mipmap.ic_card_dog_foreground,
+                R.mipmap.ic_card_fox_foreground,
+                R.mipmap.ic_card_hippo_foreground,
+                R.mipmap.ic_card_hound_foreground,
+                R.mipmap.ic_card_mice_foreground,
+                R.mipmap.ic_card_owl_foreground,
+                R.mipmap.ic_card_pig_foreground
+                ))
 
 }
 
