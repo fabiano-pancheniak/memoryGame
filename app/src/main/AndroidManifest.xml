@@ -11,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MemoryGame">
+        //TODO
+        //Swap main activity with game
         <activity
             android:name=".Game"
             android:screenOrientation="portrait" />

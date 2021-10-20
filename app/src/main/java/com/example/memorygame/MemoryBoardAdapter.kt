@@ -17,6 +17,7 @@ import kotlin.math.min
 class MemoryBoardAdapter(
     private val context: Context,
     private val boardSize: BoardSize,
+    private val boardTheme: BoardTheme,
     private val cards: List<MemoryCard>,
     private val cardClickListener: CardClickListener
 ):

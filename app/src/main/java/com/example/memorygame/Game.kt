@@ -1,40 +1,34 @@
 package com.example.memorygame
 
-import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.RadioGroup
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.memorygame.models.BoardSize
 import com.example.memorygame.models.BoardTheme
-import com.example.memorygame.models.MemoryCard
 import com.example.memorygame.models.MemoryGame
-import com.example.memorygame.utils.DEFAULT_ICONS
 import com.example.memorygame.utils.EXTRA_BOARD_SIZE
+import com.example.memorygame.utils.EXTRA_BOARD_THEME
 import com.github.jinatonic.confetti.CommonConfetti
-import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener
 import com.google.android.material.snackbar.Snackbar
 
-class Game : AppCompatActivity() {
+class Game() : AppCompatActivity() {
 
     private lateinit var memoryGame: MemoryGame
     private lateinit var rvBoard: RecyclerView
     private lateinit var clRoot: ConstraintLayout
     private lateinit var adapter: MemoryBoardAdapter
-
-
-
     private lateinit var boardSize: BoardSize
-    private lateinit var BoardTheme: BoardTheme
+    private lateinit var boardTheme: BoardTheme
+    //private val TAG = "Game"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +36,10 @@ class Game : AppCompatActivity() {
 
         //Recebendo informacao da intent
         boardSize = intent.getSerializableExtra(EXTRA_BOARD_SIZE) as BoardSize
+        boardTheme = intent.getSerializableExtra(EXTRA_BOARD_THEME) as BoardTheme
+        //Log.i(TAG, boardTheme.chosenTheme)
+
+
 
         clRoot = findViewById(R.id.clRoot)
         rvBoard = findViewById(R.id.rvBoard)
@@ -86,7 +84,7 @@ class Game : AppCompatActivity() {
     }
 
 
-
+    //TODO: Change theme?
     private fun showNewSizeDialog() {
          val boardSizeView = LayoutInflater.from(this).inflate(R.layout.dialog_board_size, null)
          val radioGroupSize = boardSizeView.findViewById<RadioGroup>(R.id.radioGroup)
@@ -118,27 +116,27 @@ class Game : AppCompatActivity() {
     private fun updateGameWithFlip(position: Int) {
        //SISTEMA ANTI LEIGOS
         if(memoryGame.haveWonGame()){
-            Snackbar.make(clRoot, "Você venceu!", Snackbar.LENGTH_LONG ).show()
+            //Snackbar.make(clRoot, "Você venceu!", Snackbar.LENGTH_LONG ).show()
             return
         }
         if(memoryGame.isCardFaceUp(position)){
-            Snackbar.make(clRoot, "Movimento inválido!", Snackbar.LENGTH_SHORT ).show()
+            //Snackbar.make(clRoot, "Movimento inválido!", Snackbar.LENGTH_SHORT ).show()
             return
         }
 
         if (memoryGame.flipCard(position)){
             if(memoryGame.haveWonGame()){
-                Snackbar.make(clRoot, "Você venceu!", Snackbar.LENGTH_LONG ).show()
+                //Snackbar.make(clRoot, "Você venceu!", Snackbar.LENGTH_LONG ).show()
                 CommonConfetti.rainingConfetti(clRoot, intArrayOf(Color.CYAN, Color.BLUE, Color.DKGRAY)).oneShot()
             }
         }
         //tvNumMoves.text = "Moves: ${memoryGame.getNumMoves()}"
         adapter.notifyDataSetChanged()
     }
-    private fun setupBoard() {
-        memoryGame = MemoryGame(boardSize)
 
-        adapter = MemoryBoardAdapter(this, boardSize,  memoryGame.cards, object: MemoryBoardAdapter.CardClickListener{
+    private fun setupBoard() {
+        memoryGame = MemoryGame(boardSize, boardTheme)
+        adapter = MemoryBoardAdapter(this, boardSize, boardTheme, memoryGame.cards, object: MemoryBoardAdapter.CardClickListener{
             override fun onCardClicked(position: Int) {
                 updateGameWithFlip(position)
             }

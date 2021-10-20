@@ -1,17 +1,19 @@
 package com.example.memorygame.models
 
-import com.example.memorygame.utils.ALPHABHET_ICONS
-import com.example.memorygame.utils.DEFAULT_ICONS
+import android.util.Log
 
-class MemoryGame(private val boardSize: BoardSize){
+
+class MemoryGame(private val boardSize: BoardSize, boardTheme: BoardTheme){
     val cards: List<MemoryCard>
     private var indexOfSingleSelectedCard: Int? = null
     private var numCardFlips = 0
 
+
+
     var numPairsFound = 0
     init {
-        val chosenImages = DEFAULT_ICONS.shuffled().take(boardSize.getNumPairs())
-        val randomizedImages = (chosenImages + chosenImages.shuffled())
+        val gameTheme = boardTheme.chosenTheme.shuffled().take(boardSize.getNumPairs())
+        val randomizedImages = (gameTheme + gameTheme.shuffled())
         cards = randomizedImages.map { MemoryCard(it) }
     }
 

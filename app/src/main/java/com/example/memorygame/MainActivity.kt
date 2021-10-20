@@ -2,22 +2,14 @@ package com.example.memorygame
 
 
 import android.content.Intent
-import android.content.res.Resources
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
-import android.view.LayoutInflater
-import android.view.View
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.RadioButton
 import android.widget.RadioGroup
-import androidx.cardview.widget.CardView
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import com.example.memorygame.databinding.ActivityMainBinding
 import com.example.memorygame.models.BoardSize
 import com.example.memorygame.models.BoardTheme
-import com.example.memorygame.utils.DEFAULT_ICONS
 import com.example.memorygame.utils.EXTRA_BOARD_SIZE
 import com.example.memorygame.utils.EXTRA_BOARD_THEME
 import kotlinx.android.synthetic.main.activity_main.*
@@ -34,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var rgThemes: RadioGroup
     private lateinit var rbDefault: RadioButton
     private lateinit var rbAlphabet: RadioButton
+    private lateinit var rbAnimals: RadioButton
     private lateinit var rgLevel: RadioGroup
     private lateinit var easy: RadioButton
     private lateinit var medium: RadioButton
@@ -55,10 +48,11 @@ class MainActivity : AppCompatActivity() {
         easy = findViewById(R.id.easy)
         medium = findViewById(R.id.medium)
         hard = findViewById(R.id.hard)
+        rbAnimals = findViewById(R.id.themeAnimals)
 
 
         btnPlay.setOnClickListener {
-            newGame()
+           newGame()
         }
 
 
@@ -73,9 +67,16 @@ class MainActivity : AppCompatActivity() {
             else -> BoardSize.HARD
         }
 
+        val desiredBoardTheme = when(rgThemes.checkedRadioButtonId){
+            R.id.themeAlphabet -> BoardTheme.ALPHABET
+            R.id.themeAnimals -> BoardTheme.ANIMALS
+            else -> BoardTheme.DEFAULT
+        }
+        //TODO: Set app colors
         val intent = Intent(this, Game::class.java)
         intent.putExtra(EXTRA_BOARD_SIZE, desiredBoardSize)
-        startActivityForResult(intent, CREATE_REQUEST_CODE);
+        intent.putExtra(EXTRA_BOARD_THEME, desiredBoardTheme)
+        startActivity(intent);
 
     }
 
