@@ -113,6 +113,7 @@ class Game() : AppCompatActivity() {
             }.show()
     }
 
+
     private fun updateGameWithFlip(position: Int) {
        //SISTEMA ANTI LEIGOS
         if(memoryGame.haveWonGame()){
@@ -127,7 +128,7 @@ class Game() : AppCompatActivity() {
         if (memoryGame.flipCard(position)){
             if(memoryGame.haveWonGame()){
                 //Snackbar.make(clRoot, "Você venceu!", Snackbar.LENGTH_LONG ).show()
-                CommonConfetti.rainingConfetti(clRoot, intArrayOf(Color.CYAN, Color.BLUE, Color.DKGRAY)).oneShot()
+                CommonConfetti.rainingConfetti(clRoot, intArrayOf(Color.CYAN, Color.BLUE, Color.LTGRAY)).oneShot()
             }
         }
         //tvNumMoves.text = "Moves: ${memoryGame.getNumMoves()}"

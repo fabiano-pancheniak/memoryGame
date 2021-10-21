@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/white"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
     <ImageView
@@ -21,6 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardCornerRadius="5dp"
+        android:backgroundTint="@color/white"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +34,9 @@
             android:id="@+id/themeGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            >
+
 
             <RadioButton
                 android:id="@+id/themeDefault"
@@ -38,8 +44,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/alignment_selector"
-                android:button="@drawable/ic_theme_default"
-                android:checked="true" />
+                android:button="@mipmap/ic_theme_default_foreground"
+                android:checked="true"/>
 
             <RadioButton
                 android:id="@+id/themeAnimals"
@@ -47,21 +53,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/alignment_selector"
-                android:button="@drawable/ic_theme_pets"
-                android:elevation="20dp" />
+                android:button="@mipmap/ic_theme_animal_foreground"
+                 />
 
             <RadioButton
                 android:id="@+id/themeAlphabet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/alignment_selector"
-                android:button="@drawable/ic_theme_alphabet"
-                android:elevation="20dp" />
+                android:button="@mipmap/ic_theme_abc_foreground"
+                 />
 
         </RadioGroup>
-
-
-
     </androidx.cardview.widget.CardView>
 
     <RadioGroup
@@ -72,13 +75,13 @@
         app:layout_constraintBottom_toTopOf="@+id/btnPlay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+        app:layout_constraintTop_toBottomOf="@+id/tvAnimais">
 
         <RadioButton
             android:id="@+id/easy"
-            android:checked="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="true"
             android:elevation="20dp"
             android:text="Fácil" />
 
@@ -98,15 +101,44 @@
 
     </RadioGroup>
 
-    <Button
+
+    <ImageButton
         android:id="@+id/btnPlay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Iniciar!"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:backgroundTint="@color/white"
+        android:src="@mipmap/ic_play_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <TextView
+        android:id="@+id/tvDefault"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Tema padrão"
+        app:layout_constraintBottom_toBottomOf="@+id/tvAnimais"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+        app:layout_constraintTop_toTopOf="@+id/tvAnimais" />
+
+    <TextView
+        android:id="@+id/tvAnimais"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Tema animais"
+        app:layout_constraintEnd_toStartOf="@+id/tvAlfabeto"
+        app:layout_constraintStart_toEndOf="@+id/tvDefault"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <TextView
+        android:id="@+id/tvAlfabeto"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Tema alfabeto"
+        app:layout_constraintBottom_toBottomOf="@+id/tvAnimais"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+        app:layout_constraintTop_toTopOf="@+id/tvAnimais" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
