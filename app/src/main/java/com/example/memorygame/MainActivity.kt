@@ -74,7 +74,8 @@ class MainActivity : AppCompatActivity() {
             R.id.themeAnimals -> BoardTheme.ANIMALS
             else -> BoardTheme.DEFAULT
         }
-        //TODO: Set app colors
+
+
         val intent = Intent(this, Game::class.java)
         intent.putExtra(EXTRA_BOARD_SIZE, desiredBoardSize)
         intent.putExtra(EXTRA_BOARD_THEME, desiredBoardTheme)

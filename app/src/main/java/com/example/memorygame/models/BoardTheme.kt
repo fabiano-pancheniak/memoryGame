@@ -17,7 +17,6 @@ enum class BoardTheme(val chosenTheme: List<Int>) {
                 R.drawable.ic_star,
                 R.drawable.ic_work
         )),
-        //TODO: Add remaining letters
         ALPHABET(listOf(
                 R.mipmap.ic_card_a_foreground,
                 R.mipmap.ic_card_b_foreground,
@@ -49,7 +48,7 @@ enum class BoardTheme(val chosenTheme: List<Int>) {
         ANIMALS(listOf(
                 R.mipmap.ic_card_bear_foreground,
                 R.mipmap.ic_card_lion_foreground,
-                R.mipmap.ic_card_bear_foreground,
+                R.mipmap.ic_card_cat_foreground,
                 R.mipmap.ic_card_butterfly_foreground,
                 R.mipmap.ic_card_cow_foreground,
                 R.mipmap.ic_card_dog_foreground,

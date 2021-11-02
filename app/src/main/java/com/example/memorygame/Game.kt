@@ -1,14 +1,18 @@
 package com.example.memorygame
 
+import android.app.ActionBar
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.RadioGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,7 +22,6 @@ import com.example.memorygame.models.MemoryGame
 import com.example.memorygame.utils.EXTRA_BOARD_SIZE
 import com.example.memorygame.utils.EXTRA_BOARD_THEME
 import com.github.jinatonic.confetti.CommonConfetti
-import com.google.android.material.snackbar.Snackbar
 
 class Game() : AppCompatActivity() {
 
@@ -28,11 +31,23 @@ class Game() : AppCompatActivity() {
     private lateinit var adapter: MemoryBoardAdapter
     private lateinit var boardSize: BoardSize
     private lateinit var boardTheme: BoardTheme
+    private lateinit var gameWonCard: CardView
+    private lateinit var btnNewGame: Button
+    private lateinit var btnMenu: Button
+
     //private val TAG = "Game"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+
+        var actionBar = getSupportActionBar()
+
+        // showing the back button in action bar
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+        }
+
 
         //Recebendo informacao da intent
         boardSize = intent.getSerializableExtra(EXTRA_BOARD_SIZE) as BoardSize
@@ -43,12 +58,27 @@ class Game() : AppCompatActivity() {
 
         clRoot = findViewById(R.id.clRoot)
         rvBoard = findViewById(R.id.rvBoard)
+        gameWonCard = findViewById(R.id.gwCardView)
+        btnMenu = findViewById(R.id.btnMenu)
+        btnNewGame = findViewById(R.id.btnNewGame)
 
         //val intent = Intent(this , CreateActivity::class.java)
         //intent.putExtra(EXTRA_BOARD_SIZE, BoardSize.MEDIUM)
         //startActivity(intent)
 
         setupBoard()
+
+        btnMenu.setOnClickListener{
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            gameWonCard.setVisibility(View.GONE)
+        }
+
+        btnNewGame.setOnClickListener{
+            setupBoard()
+            gameWonCard.setVisibility(View.GONE)
+
+        }
 
     }
 
@@ -64,7 +94,7 @@ class Game() : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
+        when (item.itemId) {
             R.id.mi_refresh -> {
                 if (!memoryGame.haveWonGame()) {
                     showAlertDialog("Iniciar novo jogo?", null, View.OnClickListener {
@@ -76,15 +106,22 @@ class Game() : AppCompatActivity() {
                 return true
             }
             R.id.mi_new_size -> {
-               showNewSizeDialog()
+                showNewSizeDialog()
                 return true
             }
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+
         }
+
+
         return super.onOptionsItemSelected(item)
     }
 
 
-    //TODO: Change theme?
+
     private fun showNewSizeDialog() {
          val boardSizeView = LayoutInflater.from(this).inflate(R.layout.dialog_board_size, null)
          val radioGroupSize = boardSizeView.findViewById<RadioGroup>(R.id.radioGroup)
@@ -129,9 +166,12 @@ class Game() : AppCompatActivity() {
             if(memoryGame.haveWonGame()){
                 //Snackbar.make(clRoot, "Você venceu!", Snackbar.LENGTH_LONG ).show()
                 CommonConfetti.rainingConfetti(clRoot, intArrayOf(Color.CYAN, Color.BLUE, Color.LTGRAY)).oneShot()
+                gameWonCard.setVisibility(View.VISIBLE)
+
+
             }
         }
-        //tvNumMoves.text = "Moves: ${memoryGame.getNumMoves()}"
+
         adapter.notifyDataSetChanged()
     }
 
@@ -147,4 +187,6 @@ class Game() : AppCompatActivity() {
         rvBoard.setHasFixedSize(true)
         rvBoard.layoutManager = GridLayoutManager(this, boardSize.getWidth())
     }
+
+
 }
