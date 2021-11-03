@@ -1,6 +1,7 @@
 package com.example.memorygame
 
 import android.app.ActionBar
+import android.content.ClipData
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -22,6 +23,7 @@ import com.example.memorygame.models.MemoryGame
 import com.example.memorygame.utils.EXTRA_BOARD_SIZE
 import com.example.memorygame.utils.EXTRA_BOARD_THEME
 import com.github.jinatonic.confetti.CommonConfetti
+import kotlinx.android.synthetic.main.memory_card.*
 
 class Game() : AppCompatActivity() {
 
@@ -34,7 +36,6 @@ class Game() : AppCompatActivity() {
     private lateinit var gameWonCard: CardView
     private lateinit var btnNewGame: Button
     private lateinit var btnMenu: Button
-
     //private val TAG = "Game"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,6 +62,7 @@ class Game() : AppCompatActivity() {
         gameWonCard = findViewById(R.id.gwCardView)
         btnMenu = findViewById(R.id.btnMenu)
         btnNewGame = findViewById(R.id.btnNewGame)
+
 
         //val intent = Intent(this , CreateActivity::class.java)
         //intent.putExtra(EXTRA_BOARD_SIZE, BoardSize.MEDIUM)
@@ -94,28 +96,27 @@ class Game() : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.mi_refresh -> {
-                if (!memoryGame.haveWonGame()) {
-                    showAlertDialog("Iniciar novo jogo?", null, View.OnClickListener {
-                        setupBoard()
-                    })
-                } else {
-                    setupBoard()
+        if (!memoryGame.haveWonGame()) {
+            when (item.itemId) {
+                R.id.mi_refresh -> {
+                    if (!memoryGame.haveWonGame()) {
+                        showAlertDialog("Iniciar novo jogo?", null, View.OnClickListener {
+                            setupBoard()
+                        })
+                    }
+                    return true
                 }
-                return true
-            }
-            R.id.mi_new_size -> {
-                showNewSizeDialog()
-                return true
-            }
-            android.R.id.home -> {
-                finish()
-                return true
-            }
+                R.id.mi_new_size -> {
+                    showNewSizeDialog()
+                    return true
+                }
+                android.R.id.home -> {
+                    finish()
+                    return true
+                }
 
+            }
         }
-
 
         return super.onOptionsItemSelected(item)
     }
@@ -167,8 +168,6 @@ class Game() : AppCompatActivity() {
                 //Snackbar.make(clRoot, "Você venceu!", Snackbar.LENGTH_LONG ).show()
                 CommonConfetti.rainingConfetti(clRoot, intArrayOf(Color.CYAN, Color.BLUE, Color.LTGRAY)).oneShot()
                 gameWonCard.setVisibility(View.VISIBLE)
-
-
             }
         }
 
@@ -182,7 +181,6 @@ class Game() : AppCompatActivity() {
                 updateGameWithFlip(position)
             }
         })
-
         rvBoard.adapter = adapter
         rvBoard.setHasFixedSize(true)
         rvBoard.layoutManager = GridLayoutManager(this, boardSize.getWidth())
