@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/alignment_selector"
-                android:button="@mipmap/ic_theme_default_foreground"
+                android:button="@mipmap/ic_theme_numbers_foreground"
                 android:checked="true"/>
 
             <RadioButton
@@ -117,7 +117,7 @@
         android:id="@+id/tvDefault"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:text="Tema padrão"
+        android:text="Tema números"
         app:layout_constraintBottom_toBottomOf="@+id/tvAnimais"
         app:layout_constraintStart_toStartOf="@+id/linearLayout2"
         app:layout_constraintTop_toTopOf="@+id/tvAnimais" />

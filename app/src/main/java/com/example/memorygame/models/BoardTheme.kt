@@ -58,7 +58,24 @@ enum class BoardTheme(val chosenTheme: List<Int>) {
                 R.mipmap.ic_card_mice_foreground,
                 R.mipmap.ic_card_owl_foreground,
                 R.mipmap.ic_card_pig_foreground
-                ))
+                )),
+        NUMBERS(listOf(
+                R.mipmap.card_0_foreground,
+                R.mipmap.card_1_foreground,
+                R.mipmap.card_2_foreground,
+                R.mipmap.card_3_foreground,
+                R.mipmap.card_4_foreground,
+                R.mipmap.card_5_foreground,
+                R.mipmap.card_6_foreground,
+                R.mipmap.card_7_foreground,
+                R.mipmap.card_8_foreground,
+                R.mipmap.card_9_foreground,
+                R.mipmap.card_equals_foreground,
+                R.mipmap.card_cancel_foreground,
+                R.mipmap.card_add_foreground,
+                R.mipmap.card_divide_foreground,
+                R.mipmap.card_remove_foreground
+        ))
 
 }
 

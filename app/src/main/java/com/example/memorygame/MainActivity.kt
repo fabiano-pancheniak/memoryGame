@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         val desiredBoardTheme = when(rgThemes.checkedRadioButtonId){
             R.id.themeAlphabet -> BoardTheme.ALPHABET
             R.id.themeAnimals -> BoardTheme.ANIMALS
-            else -> BoardTheme.DEFAULT
+            else -> BoardTheme.NUMBERS
         }
 
 
